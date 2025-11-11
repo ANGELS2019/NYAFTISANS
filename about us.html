@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NYAFTISANS - About Us</title>
+  <link rel="icon" type="image/jpg" href="logo.png">
+
+  <link href="https://fonts.googleapis.com/css2?family=Gruppo&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+<!--CSS-->
+  <style>
+    body {
+      font-family: "Roboto", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 400;
+      font-style: normal;
+      font-variation-settings: "wdth" 100;
+      background-color: #260E30;
+      color: white;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .header {
+      background-color: rgba(38, 14, 48, 1);
+      height: 5em;
+      width: 100%;
+      z-index: 2;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding-left: 2em;
+    }
+
+    .header .logo, .header .logo-name {
+      display: flex;
+      align-items: center;
+    }
+
+    .header img {
+      width: 70px;
+      margin-right: .5em;
+      height: auto;
+    }
+
+    .header a {
+      font-family: "Gruppo", sans-serif;
+      color: white;
+      font-size: 2em;
+      text-decoration: none;
+    }
+
+    .overlay { 
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      opacity: 0; 
+      width: 100%; 
+      height: 100%; 
+      background: rgba(0, 0, 0, 0.65); 
+      backdrop-filter: blur(2.5px); 
+      z-index: 100; 
+      pointer-events: none; 
+    } 
+    
+    .overlay.active { 
+      opacity: 1; 
+      pointer-events: auto; 
+    } 
+    
+    .popup { 
+      position: fixed; 
+      top: 20%; 
+      opacity: 0; 
+      width: 85%; 
+      height: 90%; 
+      padding: 20px 30px; 
+      background: #260E30; 
+      box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.15); 
+      border-radius: 8px; 
+      z-index: 101; 
+      pointer-events: none; 
+      transition: opacity 0.2s ease; 
+    } 
+    
+    .popup.active { 
+      opacity: 1; 
+      pointer-events: auto; 
+    } 
+    
+    #popupSign { 
+      width: 85%; 
+      height: auto; 
+      max-height: 560px; 
+      max-width: 500px; 
+    } 
+    
+    #popupLog { 
+      max-height: 380px; 
+      max-width: 400px; 
+    } 
+    
+    .popup .close-btn { 
+      position: absolute; 
+      top: 5px; 
+      right: 15px; 
+      font-size: 25px; 
+      cursor: pointer; 
+    } 
+    
+    .popup .popup-content h2 { 
+      text-align: center; 
+      margin: 10px 0px 25px; 
+      font-size: 25px; 
+    } 
+    
+    .popup .popup-content .form .form-element { 
+      margin: 15px 0px; 
+    } 
+    
+    .popup .popup-content .form .form-element label { 
+      font-size: 14px; 
+      color: white; 
+    } 
+    
+    .popup .popup-content .form .form-element [type="text"], [type="password"], [type="email"] { 
+      margin-top: 5px; 
+      display: block; 
+      width: 100%; 
+      padding: 10px; 
+      outline: none; 
+      border: 1px solid #733c88; 
+      border-radius: 8px; 
+    } 
+    
+    .popup .popup-content .form .form-element [type="checkbox"] { 
+      margin-right: 5px; 
+      cursor: pointer; 
+    } 
+    
+    .popup .popup-content .form .form-element p { 
+      margin-top: 15px; 
+      font-size: 14px; 
+      color: white; 
+    } 
+    
+    .popup .popup-content .form .form-element button { 
+      margin-top: 25px; 
+      width: 100%; 
+      height: 40px; 
+      border: none; 
+      outline: none; 
+      font-size: 15px; 
+      background: #634060; 
+      color: #ffffff; 
+      border-radius: 8px; 
+      cursor: pointer; 
+      transition: background-color 0.15s ease; 
+    } 
+    
+    .popup .popup-content .form .form-element button:hover { 
+      background-color: #E90075; 
+    }
+
+    .hero-banner {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 10em;
+      min-height: 45vh;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .hero-banner .back-img {
+      position: absolute;
+      display: flex;
+      flex-direction: row;
+      gap: 10em;
+      min-height: 45vh;
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      background-blend-mode: multiply;
+      background-image: url("handicraft.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: -1;
+    }
+
+    .hero-banner .hero-leftcolumn, .hero-banner .hero-rightcolumn {
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      padding: min(2rem, 8%);
+      align-items: center;
+    }
+
+    .hero-banner .hero-leftcolumn .quote {
+      font-size: 2.5em;
+      color: white;
+      font-weight: 300;
+      text-align: center;
+    }
+
+    .hero-banner .hero-leftcolumn button {
+      background: #634060;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      margin-top: 1em;
+      width: 180px;
+      height: 40px;
+      font-size: 1em;
+      font-weight: 550;
+      cursor: pointer;
+      transition: background-color .15s ease;
+    }
+
+    .hero-banner .hero-leftcolumn button:hover {
+      background-color: #E90075;
+    }
+
+    .hero-banner .hero-rightcolumn img {
+      width: 250px;
+      height: auto;
+    }
+
+    .hero-banner .hero-rightcolumn p {
+      font-size: 3em;
+      font-family: "Gruppo", sans-serif;
+      color: white;
+      font-weight: 550;
+    }
+
+    .title {
+      text-align: center;
+      margin-top: 3em;
+    }
+
+    .title h1 {
+      font-weight: 500;
+      font-size: 2.5em;
+      letter-spacing: 1px;
+      margin-bottom: 1em;
+      margin-top: 4em;
+      text-align: center;
+    }
+
+    .mission-vision-values {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      margin: 6em 4em;
+      flex-wrap: wrap;
+    }
+
+    .mission-vision-values div {
+      flex: 1 1 300px;
+      text-align: center;
+      margin: 1em;
+    }
+
+    .mission-vision-values i {
+      font-size: 3em;
+      margin-bottom: 0.8em;
+    } 
+
+    .mission-vision-values h3 {
+      font-size: 1.5em;
+      margin-bottom: 1em;
+    }
+
+    .mission-vision-values p {
+      margin: 0 3em 0 3em;
+      font-size: 1.1em;
+      text-align: justify;
+    }
+
+    .company-background {
+      margin: 2em 4em 1em 4em;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .company-background .video-paragraph {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      flex-wrap: wrap;
+    }
+
+    .company-background .video {
+      flex: 1 1 400px;
+      text-align: center;
+    }
+
+    .company-background .video video {
+      width: 80%;
+      max-width: 700px;
+      height: auto;
+      border-radius: 10px;
+      margin-bottom: 0.5em;
+      object-fit: cover;
+    }
+
+    .company-background .paragraph {
+      flex: 1 1 600px;
+      font-size: 1.1em;
+      text-align: justify;
+      margin-right: 2em;
+    }
+
+    .location {
+      margin: 2em 4em 1em 4em;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .location .map-address {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      flex-wrap: wrap;
+    }
+
+    .location .map {
+      flex: 1 1 400px;
+      text-align: center;
+    }
+
+    .location .map iframe {
+      border-radius: .7em;
+      width: 80%;
+      max-width: 700px;
+      height: 350px;
+    }
+
+    .location .address {
+      flex: 1 1 600px;
+      font-size: 1.1em;
+      text-align: justify;
+      margin: 2em;
+    }
+
+    .about-devs {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      margin: 6em 4em;
+      flex-wrap: wrap;
+      gap: 2em;
+    }
+
+    .about-devs div {
+      flex: 1 1 300px;
+      text-align: center;
+      margin: 1.5em;
+      max-width: 350px;
+    }
+
+    .about-devs img {
+      width: 80%;
+      max-width: 450px;
+      height: auto;
+      border-radius: 10px;
+      margin-bottom: .8em;
+      object-fit: cover;
+    }
+
+    .about-devs h3 {
+      font-size: 1.5em;
+      margin-bottom: 1em;
+    }
+
+    .about-devs p {
+      margin: 0 1em 3em 1em;
+      font-size: 1.1em;
+      text-align: justify;
+    }
+
+    @media screen and (max-width: 768px) {
+      .hero-banner {
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .mission-vision-values {
+        flex-direction: column;
+        align-items: center;
+        margin: 2em;
+        gap: 2em;
+      }
+  
+      .company-background {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .company-background .video video {
+        width: 600px;
+        max-width: 90%;
+      }
+
+      .company-background .paragraph {
+        width: 90%;
+        margin-top: 1.5em;
+        text-align: justify;
+      }
+
+      .about-devs {
+        flex-direction: column;
+        align-items: center;
+        margin: 2em;
+        gap: 2em;
+      }
+
+      .about-devs div {
+        max-width: 90%;
+      }
+
+      .title h1 {
+        text-align: center;
+        font-size: 2em;
+      }
+
+      .location .map-address {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .location .address {
+        width: 90%;
+        font-size: 1.1em;
+      }
+
+      .location .map iframe {
+        width: 600px;
+        max-width: 90%;
+        height: 400px;
+        max-height: 70%;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="header">
+    <div class="logo"><a href="index.html"><img src="logo.png" alt="LOGO"></a></div>
+    <div class="logo-name"><a href="index.html"><p>NYAFTISANS</p></a></div>
+  </div>
+
+  <!--hero banner section-->
+  <div class="hero-banner">
+    <div class="hero-leftcolumn">
+      <div class="quote"><p>Be a part of creativity's finest</p></div>
+      <div class="signin"><button id="open-btn-signup">SIGN UP NOW</button></div>
+      <div class="login"><button id="open-btn-login">LOG IN</button></div>
+    </div>
+
+    <!--popup section for sign in--> 
+    <div class="popup" id="popupSign"> 
+      <div class="popup-content"> 
+        <div class="close-btn" id="close-sign">&times;</div> 
+        
+        <h2>Create an Account</h2> 
+        <form action="#" target="_blank" id="form-sign"> 
+
+          <div class="form"> 
+            <div class="form-element"> 
+              <label for="username">Username</label> 
+              <input type="text" id="username" placeholder="Username" required> 
+            </div> 
+
+            <div class="form-element"> 
+              <label for="email">Email</label> 
+              <input type="email" id="email" placeholder="Email" required> 
+            </div> 
+
+            <div class="form-element"> 
+              <label for="password">Password</label> 
+              <input type="password" id="password" placeholder="Enter Password" required> 
+            </div> 
+
+            <div class="form-element"> 
+              <label for="repeat-password">Repeat Password</label> 
+              <input type="password" id="repeat-password" placeholder="Repeat Password" required> 
+            </div> 
+
+            <div class="form-element"> <input type="checkbox"> 
+              <label for="remember-me">Remember me</label> 
+            </div> 
+
+            <div class="form-element"> 
+              <p>By creating an account you agree to our 
+                <a href="#" style="color:dodgerblue">Terms & Privacy</a>.
+              </p>
+            </div> 
+
+            <div class="form-element"> 
+              <button type="submit" class="signupbtn">Sign Up</button> 
+            </div> 
+
+          </div> 
+        </form> 
+      </div> 
+    </div> 
+    
+    <!--popup section for login--> 
+    <div class="popup" id="popupLog"> 
+      <div class="popup-content"> 
+        <div class="close-btn" id="close-log">&times;</div> 
+        
+        <h2>Login</h2> 
+        <form action="#" target="_blank" id="form-log"> 
+
+          <div class="form"> 
+            <div class="form-element"> 
+              <label for="username">Username/Email</label> 
+              <input type="text" id="username" placeholder="Username/Email" required> 
+            </div> 
+
+            <div class="form-element"> 
+              <label for="password">Password</label> 
+              <input type="password" id="password" placeholder="Enter Password" required> 
+            </div> 
+
+            <div class="form-element"> 
+              <input type="checkbox"> 
+              <label for="remember-me">Remember me</label> 
+            </div> 
+
+            <div class="form-element"> 
+              <button type="submit" class="signupbtn">Log in</button> 
+            </div> 
+
+          </div> 
+        </form> 
+      </div> 
+    </div>
+
+    <div class="overlay"></div>
+
+    <!--logo and name-->
+    <div class="hero-rightcolumn">
+      <div><img class="logo" src="logo.png" alt="Logo"></div>
+      <div><p class="logo-name">NYAFTISANS</p></div>
+    </div>
+    <div class="back-img"></div>
+  </div>
+
+  <!--mission vision values section-->
+  <div class="mission-vision-values">
+    <div>
+      <i class="fa-solid fa-rocket"></i>
+      <h3>Our Mission</h3>
+      <p>To provide artists a digital space where they can showcase their crafts and earn fair commissions from their work, while connecting them to a wider audience that values creativity, and authenticity.</p>
+    </div>
+
+    <div> 
+      <i class="fa-solid fa-eye"></i>
+      <h3>Our Vision</h3>
+      <p>To become a trusted platform that uplifts artists by transforming creativity into sustainable success, inspiring a global community where handmade craftsmanship is valued, supported, and celebrated.</p>
+    </div>
+
+    <div>
+      <i class="fa-solid fa-lightbulb"></i>
+      <h3>Our Values</h3>
+      <p>To uphold creativity by empowering artists to express their individuality, integrity by ensuring fairness, transparency and ethical practices in every interaction, and community by fostering an inclusive space for all, that encourage collaboration, inspiration, and shared growth.</p>
+    </div>
+  </div>
+
+  <!--company background section-->
+  <div class="title">
+    <h1>VIDEO TRAILER</h1>
+  </div>
+
+  <div class="company-background">
+    <div class="video-paragraph">
+      <div class="video">
+        <video controls>
+          <source src="video2.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="paragraph">
+        <p> Our video trailer gives you a glimpse into the heart of Nyaftisans. Watch how each creation is carefully designed, and refined by talented artists who bring their unique touch to every product.</p>
+      </div>
+    </div>
+  </div>
+
+  <!--location section-->
+  <div class="title">
+    <h1>WAREHOUSE LOCATION</h1>
+  </div>
+
+  <div class="location">
+    <div class="map-address">
+      <div class="map">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3858.8209112711967!2d120.97957027411522!3d14.716053875334195!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b3b5e2dbec85%3A0x70d7a350cfaf0e7a!2sWarehouse%203%2C%20F.%20Dulalia%20Street%2C%20Valenzuela%20City%2C%20Metro%20Manila%2C%20Philippines!5e0!3m2!1sen!2sph!4v1731323146000!5m2!1sen!2sph" allowfullscreen="" loading="lazy"  referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+      </div>
+
+      <div class="address">
+        <p>Our main warehouse is located at <strong>Warehouse 3, F. Dulalia Street, Valenzuela City, Metro Manila, Philippines</strong>. This location serves as our central storage and dispatch hub.</p>
+      </div>
+    </div>
+  </div>
+
+  <!--about developers section-->
+  <div class="title">
+    <h1>ABOUT THE DEVELOPERS</h1>
+  </div>
+
+  <div class="about-devs">
+    <div>
+      <img src="rota.jpg" alt="Rota, Ysabella Dylan ">
+      <h3>Rota, Ysabella Dylan</h3>
+      <p>Rota created the website's visual design, color palette, and logo. She also organized the team's workflow, developed the website's user profile and settings page.</p>
+    </div>
+
+    <div>
+      <img src="cipriano.png" alt="Cipriano, Hilarie">
+      <h3>Cipriano, Hilarie</h3>
+      <p>Cipriano developed the website's About Us page, ensuring that it represented the site's identity and purpose.</p>
+    </div>
+
+    <div>
+      <img src="ramirez.jpg" alt="Ramirez, Jamaimah Janna">
+      <h3>Ramirez, Jamaimah Janna</h3>
+      <p>Ramirez created the website's cart system, making it easier for users to manage and review their selected items.</p>
+    </div>
+
+    <div>
+      <img src="sabando.jpg" alt="Sabando, Christianne Denise">
+      <h3>Sabando, Christianne Denise</h3>
+      <p>Sabando developed the website's homescreen page, designing it to be visually appealing and easy to navigate for users.</p>
+    </div>
+
+  </div>
+</body>
+
+<!--JAVASCRIPT-->
+  <script>
+    /* Open Sign in Popup */
+    document.querySelector("#open-btn-signup").addEventListener("click", function(){
+      document.querySelector("#popupSign").classList.add("active"); 
+      document.querySelector(".overlay").classList.add("active");
+    });
+
+    /* Close Sign in Popup */
+    document.querySelector("#close-sign").addEventListener("click", function(){
+      document.querySelector("#popupSign").classList.remove("active");
+      document.querySelector(".overlay").classList.remove("active");
+    });
+
+    /* Closes popup when submitting the sign form */
+    document.querySelector("#form-sign").addEventListener("submit", function(event){
+      event.preventDefault();
+      this.reset();
+
+      document.querySelector("#popupSign").classList.remove("active");
+      document.querySelector(".overlay").classList.remove("active");
+    });
+
+    /* Open Log in Popup */
+    document.querySelector("#open-btn-login").addEventListener("click", function(){
+      document.querySelector("#popupLog").classList.add("active"); 
+      document.querySelector(".overlay").classList.add("active");
+    });
+
+    /* Close Log in Popup */
+    document.querySelector("#close-log").addEventListener("click", function(){
+      document.querySelector("#popupLog").classList.remove("active");
+      document.querySelector(".overlay").classList.remove("active");
+    });
+
+    /* Closes popup when submitting the log form */
+    document.querySelector("#form-log").addEventListener("submit", function(event){
+      event.preventDefault();
+      this.reset();
+
+      document.querySelector("#popupLog").classList.remove("active");
+      document.querySelector(".overlay").classList.remove("active");
+    });
+
+    /* Popup closes when user clicks outside */
+    document.querySelector(".overlay").addEventListener("click", function(){
+      if (document.querySelector(".popup.active")) document.querySelector(".popup.active").classList.remove("active");
+      this.classList.remove("active");
+    });
+
+  </script>
+
+</html>
